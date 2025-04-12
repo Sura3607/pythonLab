@@ -7,10 +7,10 @@ def rolling():
     return dice1,dice2, dice1+dice2
 
 def guessing():
-    print("1. TÀI\n2. XỈU")
+    print("1. TÀI\n2. XỈU\n3. Nổ hũ (=5)")
     while True:
         guess = int(input("Ban chon: "))
-        if 0< guess< 3:
+        if 0< guess< 4:
             return guess
 
 def bet(totalAmount):
@@ -25,12 +25,17 @@ def result(totalDice, guess):
     r = 2
     if totalDice > 5:
         r = 1
-    print(f"---Ket qua : {"Tài" if r == 1 else "Xỉu"}---")
+    elif totalDice == 5:
+        r = 3
+    print(f"---Ket qua : {"Tài" if r == 1 else "Xỉu" if r == 2 else "Nổ hũ = 5"}---")
+    if guess == r and r == 3:
+        print("NỔ HŨ!!! x3 gia tri")
+        return 3
     if guess == r:
         print("Ban da doan dung")
-        return True
+        return 1
     print("Ban da doan sai")
-    return False
+    return -1
 
 def afterPlay(nPlay, nWin, amount, BaseAmount = 100):
     print(f"Ban da choi {nPlay} van")
@@ -57,13 +62,12 @@ def gameController():
         userBet = bet(amount)
         d1,d2,totalDice = rolling()
         isWin = result(totalDice,guess)
-        if isWin:
+        amount += userBet*isWin
+        if isWin > 0:
             nWin+=1
-            amount += userBet
             print(f"So du +{userBet}$")
             print(f"So du hien tai: {amount}$")
         else:
-            amount -= userBet
             print(f"So du -{userBet}$")
             print(f"So du hien tai: {amount}$")
 
