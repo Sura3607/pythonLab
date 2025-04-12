@@ -17,7 +17,7 @@ def bet(totalAmount):
     while True:
         print(f"Ban dang hien co {totalAmount}$")
         b = int(input("Cược (Cược phải lớn hơn 10,000$) :"))
-        if 10000 < b <= totalAmount:
+        if 9999 < b <= totalAmount:
             return b
         print("Khong hop le!")
 
