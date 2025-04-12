@@ -16,8 +16,8 @@ def guessing():
 def bet(totalAmount):
     while True:
         print(f"Ban dang hien co {totalAmount}$")
-        b = int(input("Ban muon cuoc bao nhieu? :"))
-        if 0 < b <= totalAmount:
+        b = int(input("Cược (Cược phải lớn hơn 10,000$) :"))
+        if 10000 < b <= totalAmount:
             return b
         print("Khong hop le!")
 
@@ -46,7 +46,7 @@ def afterPlay(nPlay, nWin, amount, BaseAmount = 100):
         print("Ban hoa von")
     
 def gameController():
-    BaseAmount = 1000
+    BaseAmount = 100000
     amount = BaseAmount
     nGame = 0
     nWin = 0
